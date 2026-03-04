@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ana Paula Henrique Advogados</title>
+  <meta name="description" content="Ana Paula Henrique Advogados - Especialistas em Propriedade Intelectual, Direitos Autorais, Registro de Marcas e Patentes, LGPD. Atuação consultiva e contenciosa desde 2019.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --terracotta: #9B5617;
+      --terracotta-dark: #7A4412;
+      --terracotta-deep: #5C330E;
+      --gold: #C9A96E;
+      --gold-light: #D4BA85;
+      --gold-pale: #E8D5B0;
+      --cream: #FAF6F0;
+      --cream-dark: #F0E8DA;
+      --charcoal: #2C2421;
+      --charcoal-light: #4A3F3A;
+      --white: #FFFFFF;
+      --text-body: #5A4A3F;
+      --text-muted: #8A7A6F;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav.scrolled {
+      background: rgba(250, 246, 240, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 30px rgba(155, 86, 23, 0.08);
+      padding: 0.8rem 4%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 48px;
+      transition: height 0.4s;
+    }
+
+    nav.scrolled .nav-logo img { height: 38px; }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.65rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 0.6rem 1.6rem !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--terracotta) !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.15em !important;
+      transition: all 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--terracotta) !important;
+      color: var(--white) !important;
+      border-color: var(--terracotta) !important;
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 1.5px;
+      background: var(--charcoal);
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 4px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -4px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--terracotta-deep) 0%, var(--terracotta) 40%, #B06A2A 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(201, 169, 110, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 8%;
+      max-width: 800px;
+      animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      border: 1px solid rgba(201, 169, 110, 0.3);
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: heroFadeIn 1.2s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.8rem;
+      animation: heroFadeIn 1.2s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      animation: heroFadeIn 1.2s 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      animation: heroFadeIn 1.2s 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.2rem;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201, 169, 110, 0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.2rem;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* ── HERO DECORATIVE ── */
+    .hero-decor {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 380px;
+      height: 380px;
+      opacity: 0.08;
+      animation: heroFadeIn 1.5s 0.6s forwards;
+    }
+
+    .hero-decor img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(2) saturate(0);
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 7rem 8%; }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 500px;
+    }
+
+    .about-img-block {
+      width: 85%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23C9A96E' fill-opacity='0.06'/%3E%3C/svg%3E");
+    }
+
+    .about-img-block .logo-display {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      opacity: 0.5;
+      filter: brightness(2) saturate(0);
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+      width: 55%;
+      height: 200px;
+      border: 1px solid var(--gold);
+      z-index: -1;
+    }
+
+    .about-text .section-subtitle {
+      margin-bottom: 2rem;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── AREAS DE ATUAÇÃO ── */
+    .areas {
+      background: var(--cream);
+    }
+
+    .areas-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .areas-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .area-card {
+      background: var(--white);
+      padding: 2.5rem;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+      overflow: hidden;
+    }
+
+    .area-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--terracotta));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .area-card:hover {
+      border-color: rgba(201, 169, 110, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(155, 86, 23, 0.08);
+    }
+
+    .area-card:hover::before { transform: scaleX(1); }
+
+    .area-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--terracotta);
+    }
+
+    .area-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--terracotta);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .area-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.8rem;
+    }
+
+    .area-card p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── DIFERENCIAL ── */
+    .diferencial {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .diferencial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(155, 86, 23, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201, 169, 110, 0.08) 0%, transparent 50%);
+    }
+
+    .diferencial .section-label { color: var(--gold); }
+    .diferencial .section-title { color: var(--white); }
+    .diferencial .section-subtitle { color: rgba(255, 255, 255, 0.6); }
+
+    .dif-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .dif-item {
+      padding: 2rem;
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      transition: all 0.4s;
+    }
+
+    .dif-item:hover {
+      border-color: rgba(201, 169, 110, 0.4);
+      background: rgba(201, 169, 110, 0.05);
+    }
+
+    .dif-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .dif-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .dif-item p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+    }
+
+    /* ── DEPOIMENTOS ── */
+    .depoimentos {
+      background: var(--white);
+    }
+
+    .depoimentos-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .depoimentos-header .section-subtitle { margin: 0 auto; }
+
+    .depo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .depo-card {
+      padding: 2.5rem;
+      background: var(--cream);
+      position: relative;
+    }
+
+    .depo-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .depo-card p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-body);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .depo-author {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+    }
+
+    .depo-role {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--terracotta-deep) 0%, var(--terracotta) 50%, #B06A2A 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 8%;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .cta-section .section-title {
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto 1rem;
+    }
+
+    .cta-section p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .cta-section .btn-primary {
+      position: relative;
+      background: var(--white);
+      color: var(--terracotta);
+    }
+
+    .cta-section .btn-primary:hover {
+      background: var(--gold-pale);
+    }
+
+    /* ── CONTATO ── */
+    .contato {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+
+    .contato-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contato-info h3:first-of-type { margin-top: 2.5rem; }
+
+    .contato-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .contato-detail svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contato-detail span {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .contato-detail a {
+      color: var(--terracotta);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contato-detail a:hover { color: var(--terracotta-dark); }
+
+    .contato-form {
+      padding-top: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      transition: border-color 0.3s;
+      outline: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--terracotta);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .form-submit:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(155, 86, 23, 0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 4rem 8% 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--gold);
+      background: rgba(201, 169, 110, 0.1);
+    }
+
+    .footer-social svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .dif-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 4rem 6%; }
+
+      .hamburger { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--cream);
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        gap: 1.8rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.open { right: 0; }
+
+      .hero-decor { display: none; }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-visual { height: 350px; }
+
+      .areas-grid { grid-template-columns: 1fr; }
+      .dif-grid { grid-template-columns: 1fr; }
+      .depo-grid { grid-template-columns: 1fr; }
+
+      .contato {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <img src="logo_ana.jpeg" alt="Ana Paula Henrique Advogados" id="navLogo">
+      <div class="nav-logo-text">
+        Ana Paula Henrique
+        <span>Advogados</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre" onclick="closeMenu()">Sobre</a></li>
+      <li><a href="#areas" onclick="closeMenu()">Áreas</a></li>
+      <li><a href="#diferenciais" onclick="closeMenu()">Diferenciais</a></li>
+      <li><a href="#depoimentos" onclick="closeMenu()">Depoimentos</a></li>
+      <li><a href="#contato" onclick="closeMenu()" class="nav-cta">Contato</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">Propriedade Intelectual · Direitos Autorais · LGPD</div>
+      <h1>Protegemos o que é <em>único</em> no seu negócio</h1>
+      <p>Especialistas em Propriedade Intelectual, Direitos Autorais, Registro de Marcas e Patentes e LGPD. Atuação consultiva e contenciosa com estratégia, técnica e dedicação desde 2019.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary">
+          Fale Conosco
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#areas" class="btn-outline">Nossas Especialidades</a>
+      </div>
+    </div>
+    <div class="hero-decor">
+      <img src="logo_ana.jpeg" alt="">
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about" id="sobre">
+    <div class="about-visual reveal">
+      <div class="about-img-block">
+        <img class="logo-display" src="logo_ana.jpeg" alt="AH">
+      </div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">Sobre a Fundadora</div>
+      <h2 class="section-title">Dra. Ana Paula Henrique</h2>
+      <p class="section-subtitle">Advogada especialista em Propriedade Intelectual, Direitos Autorais, Registro de Marcas e Patentes e LGPD. Fundadora do escritório Ana Paula Henrique Advogados, atua desde 2019 oferecendo assessoria consultiva e contenciosa para empresas e empreendedores que buscam proteger seus ativos intangíveis.</p>
+      <p class="section-subtitle" style="margin-top: 1rem;">Com visão estratégica e abordagem personalizada, a Dra. Ana Paula une conhecimento técnico especializado à compreensão profunda do universo criativo e empresarial, garantindo a proteção integral da identidade, das criações e dos dados de seus clientes.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Anos de Atuação</div>
+        </div>
+        <div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Marcas Registradas</div>
+        </div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Dedicação</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁREAS DE ATUAÇÃO -->
+  <section class="areas" id="areas">
+    <div class="areas-header reveal">
+      <div class="section-label">Áreas de Atuação</div>
+      <h2 class="section-title">Especialidades do escritório</h2>
+      <p class="section-subtitle">Atuação focada na proteção de ativos intangíveis, criações intelectuais e adequação à legislação de dados pessoais.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        </div>
+        <h3>Registro de Marcas</h3>
+        <p>Pesquisa de viabilidade, depósito e acompanhamento de registro de marcas junto ao INPI. Proteja a identidade do seu negócio e garanta exclusividade no mercado.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3>Registro de Patentes</h3>
+        <p>Proteção de invenções e modelos de utilidade. Assessoria completa no processo de patenteamento, desde a redação até a concessão pelo INPI.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h3>Direitos Autorais</h3>
+        <p>Proteção de obras intelectuais, literárias, artísticas e científicas. Registro, licenciamento, contratos de cessão e defesa contra uso indevido.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        </div>
+        <h3>LGPD</h3>
+        <p>Adequação à Lei Geral de Proteção de Dados. Mapeamento de dados, elaboração de políticas de privacidade, treinamentos, DPO as a Service e gestão de incidentes.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Propriedade Intelectual</h3>
+        <p>Estratégia completa de proteção de ativos intangíveis: marcas, patentes, desenhos industriais, softwares, trade dress e segredos de negócio.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+        </div>
+        <h3>Contencioso Especializado</h3>
+        <p>Atuação em litígios envolvendo violação de marcas, pirataria, concorrência desleal, uso indevido de imagem e disputas de propriedade intelectual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="diferencial" id="diferenciais">
+    <div class="reveal">
+      <div class="section-label">Por que nos escolher</div>
+      <h2 class="section-title">Nossos Diferenciais</h2>
+      <p class="section-subtitle">Atuação especializada e estratégica para proteger o que há de mais valioso no seu negócio.</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-item reveal">
+        <div class="dif-number">01</div>
+        <h4>Especialização Focada</h4>
+        <p>Atuação exclusiva em Propriedade Intelectual, Direitos Autorais e LGPD — não somos generalistas, somos especialistas.</p>
+      </div>
+      <div class="dif-item reveal">
+        <div class="dif-number">02</div>
+        <h4>Consultivo & Contencioso</h4>
+        <p>Assessoria preventiva para evitar conflitos e atuação firme no contencioso quando a proteção judicial se faz necessária.</p>
+      </div>
+      <div class="dif-item reveal">
+        <div class="dif-number">03</div>
+        <h4>Atendimento Estratégico</h4>
+        <p>Cada cliente recebe um plano de proteção sob medida, alinhando a estratégia jurídica aos objetivos de negócio.</p>
+      </div>
+      <div class="dif-item reveal">
+        <div class="dif-number">04</div>
+        <h4>Proximidade & Transparência</h4>
+        <p>Comunicação clara e acessível em cada etapa. Você acompanha tudo com total visibilidade e confiança.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="depoimentos-header reveal">
+      <div class="section-label">Depoimentos</div>
+      <h2 class="section-title">O que dizem nossos clientes</h2>
+      <p class="section-subtitle">A confiança de nossos clientes é o nosso maior patrimônio.</p>
+    </div>
+    <div class="depo-grid">
+      <div class="depo-card reveal">
+        <div class="depo-quote">"</div>
+        <p>A Dra. Ana Paula registrou nossa marca com agilidade e nos orientou sobre a proteção completa da nossa identidade visual. Hoje nos sentimos seguros para crescer.</p>
+        <div class="depo-author">Mariana C.</div>
+        <div class="depo-role">Registro de Marca — Empreendedora</div>
+      </div>
+      <div class="depo-card reveal">
+        <div class="depo-quote">"</div>
+        <p>A adequação à LGPD parecia impossível até conhecermos o escritório. Conduziram todo o processo com clareza, mapearam nossos dados e implementaram as políticas necessárias.</p>
+        <div class="depo-author">Roberto M.</div>
+        <div class="depo-role">LGPD — Diretor de Tecnologia</div>
+      </div>
+      <div class="depo-card reveal">
+        <div class="depo-quote">"</div>
+        <p>Tivemos nossa obra plagiada na internet e a Dra. Ana Paula agiu com rapidez e estratégia. Conseguimos a remoção do conteúdo e a indenização devida.</p>
+        <div class="depo-author">Fernanda L.</div>
+        <div class="depo-role">Direitos Autorais — Criadora de Conteúdo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="reveal">
+      <h2 class="section-title">Sua marca, sua criação e seus dados merecem proteção</h2>
+      <p>Agende uma consulta e descubra como podemos blindar juridicamente seu negócio, suas criações e seus dados.</p>
+      <a href="#contato" class="btn-primary">
+        Agendar Consulta
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato" id="contato">
+    <div class="contato-info reveal">
+      <div class="section-label">Contato</div>
+      <h2 class="section-title">Fale com nosso escritório</h2>
+      <p class="section-subtitle">Estamos à disposição para atendê-lo. Entre em contato por um dos canais abaixo ou preencha o formulário.</p>
+
+      <h3>Endereço</h3>
+      <div class="contato-detail">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>São Paulo — SP</span>
+      </div>
+
+      <h3>Telefone & E-mail</h3>
+      <div class="contato-detail">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span><a href="tel:+5511999999999">(11) 99999-9999</a></span>
+      </div>
+      <div class="contato-detail">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        <span><a href="mailto:contato@anahenriqueadvogados.com.br">contato@anahenriqueadvogados.com.br</a></span>
+      </div>
+
+      <h3>Horário de Atendimento</h3>
+      <div class="contato-detail">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 12h</span>
+      </div>
+    </div>
+
+    <div class="contato-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="tel" placeholder="(00) 00000-0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Área de Interesse</label>
+        <select>
+          <option value="">Selecione uma área</option>
+          <option>Registro de Marcas</option>
+          <option>Registro de Patentes</option>
+          <option>Direitos Autorais</option>
+          <option>Propriedade Intelectual</option>
+          <option>LGPD</option>
+          <option>Contencioso</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensagem</label>
+        <textarea placeholder="Descreva brevemente como podemos ajudá-lo..."></textarea>
+      </div>
+      <button class="form-submit" type="button">
+        Enviar Mensagem
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-left:6px"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="display:inline-flex">
+          <img src="logo_ana.jpeg" alt="AH" style="height:44px; filter: brightness(1.5);">
+        </a>
+        <p>Escritório especializado em Propriedade Intelectual, Direitos Autorais, Registro de Marcas e Patentes e LGPD. Atuação consultiva e contenciosa desde 2019.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#home">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#areas">Áreas de Atuação</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h4>Áreas</h4>
+        <a href="#areas">Registro de Marcas</a>
+        <a href="#areas">Direitos Autorais</a>
+        <a href="#areas">Patentes</a>
+        <a href="#areas">LGPD</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="tel:+5511999999999">(11) 99999-9999</a>
+        <a href="mailto:contato@anahenriqueadvogados.com.br">contato@anahenriqueadvogados.com.br</a>
+        <a href="https://www.anahenriqueadvogados.com.br" target="_blank">www.anahenriqueadvogados.com.br</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2019–2026 Ana Paula Henrique Advogados. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    }
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Form submit feedback
+    document.querySelector('.form-submit').addEventListener('click', function() {
+      this.textContent = 'Mensagem Enviada!';
+      this.style.background = '#25D366';
+      setTimeout(() => {
+        this.innerHTML = 'Enviar Mensagem <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-left:6px"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+        this.style.background = '';
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
